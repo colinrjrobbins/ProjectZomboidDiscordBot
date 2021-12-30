@@ -5,31 +5,33 @@
 #       the Discord chat if it has changed, also to restart
 #       the server if it has stopped. 
 
-import discord
+from discord.ext import commands
 import os
-import time
 from modules.IPGather import IPGather
 from modules.ServerCheck import ServerCheck
 
-client = discord.Client()
+TOKEN = os.getenv('TOKEN')
+
+bot = commands.Bot(command_prefix='$')
 
 ipg = IPGather()
 sc = ServerCheck()
 
-# watchdog for the running server
-    # if server has stopped restart it
-    # check and save the IP address gathered
-@client.event
-async def on_ready():
-    print(f'{client.user} has begun monitoring the system.')
+@bot.command(name='server-check', help='Responds with server status.')
+async def server_check(ctx):
     server_check = sc.server_running()
     print(f'Server Running: {server_check}')
     server_ip = ipg.run_ip_check()
+    with open('localIP.txt', 'w') as ip_file:
+        ip_file.write(server_ip)
     print(f'IP Address: {server_ip}')
     print('Server Port: 16261')
+
+    response = f'Server Running: {server_check}\nIP Address: {server_ip}\nServer Port: 16261'
+    await ctx.send(response)
 
 # check to see if IP changed 
     # if IP has changed update the file
     # send new IP to discord chat. 
 
-client.run(os.getenv('TOKEN'))
+bot.run(TOKEN)

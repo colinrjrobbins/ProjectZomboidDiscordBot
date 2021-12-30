@@ -1,2 +1,4 @@
 
 .env
+modules/__pycache__/ServerCheck.cpython-310.pyc
+modules/__pycache__/IPGather.cpython-310.pyc

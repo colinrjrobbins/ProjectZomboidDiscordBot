@@ -34,5 +34,5 @@ class IPGather:
         log_file = self.file_find(cwd)
         save_log = open(log_file, 'r')
         lines = str(save_log.read())
-        public_IP = log_search(lines)
+        public_IP = self.log_search(lines)
         return public_IP
