@@ -7,6 +7,7 @@
 
 import discord
 import os
+import time
 from modules.IPGather import IPGather
 from modules.ServerCheck import ServerCheck
 
@@ -18,6 +19,15 @@ sc = ServerCheck()
 # watchdog for the running server
     # if server has stopped restart it
     # check and save the IP address gathered
+@client.event
+async def on_ready():
+    print(f'{client.user} has begun monitoring the system.')
+    server_check = sc.server_running()
+    print(f'Server Running: {server_check}')
+    server_ip = ipg.run_ip_check()
+    print(f'IP Address: {server_ip}')
+    print('Server Port: 16261')
+
 # check to see if IP changed 
     # if IP has changed update the file
     # send new IP to discord chat. 

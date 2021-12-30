@@ -15,7 +15,7 @@ class ServerCheck:
 
     # primary run check
     def server_running(self):
-        split_string = string_modify()
+        split_string = self.string_modify()
         if "ps aux" in split_string:
             return False
         elif "grep" in split_string:
