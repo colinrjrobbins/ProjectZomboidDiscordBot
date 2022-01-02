@@ -28,7 +28,7 @@ async def server_check(ctx):
     print(f'IP Address: {server_ip}')
     print('Server Port: 16261')
 
-    response = f'Server Running: {server_check}\nIP Address: {server_ip}\nServer Port: 16261'
+    response = f'Server Running: {server_check}\nIP Address: {server_ip}\nServer Port: 16261\nPassword: 1234'
     await ctx.send(response)
 
 bot.run(TOKEN)
