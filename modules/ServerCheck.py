@@ -2,11 +2,11 @@ import os
 
 class ServerCheck:
     def __init__(self):
-        self.catch = os.popen('ps aux | grep "SCREEN -S server bash start.sh"').read()
-        self.server_up = True
-
+        pass
+    
     def string_modify(self):
-        catch_split = self.catch.split("\n")
+        catch = os.popen('ps aux | grep "SCREEN -S server bash start.sh"').read()
+        catch_split = catch.split("\n")
         return catch_split[0]
     
     def restart_server(self):
